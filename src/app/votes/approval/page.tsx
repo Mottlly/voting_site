@@ -1,5 +1,5 @@
-import WeightedVoting from "../components/vote_list";
-import Footer from "../components/footerSite";
+import WeightedVoting from "../../components/vote_list";
+import Footer from "../../components/footerSite";
 
 export default function VotePage() {
   return (
