@@ -6,24 +6,23 @@ import Footer from "./components/footerSite";
 export default function Home() {
   const router = useRouter();
 
-  // Voting options with images & routes
   const votingOptions = [
     { title: "Ranked Choice", image: "/rcv_logo.jpg", route: "/votes/ranked" },
-    { title: "Approval Voting", image: "/approval-voting.jpg", route: "/votes/approval" },
-    { title: "Two-Round Runoff", image: "/two-round-runoff.jpg", route: "/votes/runoff" },
+    { title: "Approval Voting", image: "/approval_logo.jpg", route: "/votes/approval" },
+    { title: "Two-Round Runoff", image: "/runoff_logo.jpg", route: "/votes/runoff" },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <div className="flex flex-col h-screen bg-[var(--background)] text-[var(--foreground)] items-center">
       {/* Main Content Section */}
-      <main className="flex flex-1 flex-col items-center justify-center text-center px-6 sm:px-12">
+      <main className="flex flex-1 flex-col justify-center items-center text-center px-6 sm:px-12 max-w-4xl w-full">
         {/* App Logo */}
         <Image
           src="/logo.jpg"
           alt="App Logo"
           width={200}
           height={200}
-          className="mb-6 rounded-lg shadow-lg"
+          className="mb-6 sm:mb-12 rounded-lg shadow-lg"
           priority
         />
 
@@ -33,37 +32,38 @@ export default function Home() {
           Select a voting method to get started.
         </p>
 
-        {/* Voting Option Buttons */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {votingOptions.map((option) => (
-            <button
-              key={option.title}
-              onClick={() => router.push(option.route)}
-              className="relative group flex flex-col items-center justify-center w-full max-w-xs bg-gray-800 hover:bg-gray-700 rounded-lg overflow-hidden transition-all duration-300 shadow-lg"
-            >
-              {/* Voting Image */}
-              <Image
-                src={option.image}
-                alt={option.title}
-                width={300}
-                height={200}
-                className="object-cover w-full h-48"
-              />
-              
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-20 transition-all duration-300"></div>
+        {/* Voting Options */}
+        <div className="mt-6 w-full max-w-3xl">
+          <div className="flex gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 scrollbar-hide">
+            {votingOptions.map((option) => (
+              <button
+                key={option.title}
+                onClick={() => router.push(option.route)}
+                className="relative group flex flex-col items-center justify-center w-64 sm:w-full bg-[var(--background)] border border-white rounded-lg overflow-hidden transition-all duration-300 shadow-lg flex-shrink-0 sm:flex-shrink"
+              >
+                <Image
+                  src={option.image}
+                  alt={option.title}
+                  width={250}
+                  height={160}
+                  className="object-contain w-full h-40"
+                />
 
-              {/* Voting Title */}
-              <div className="py-4 text-lg font-semibold text-white">
-                {option.title}
-              </div>
-            </button>
-          ))}
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-all duration-300"></div>
+
+                <div className="py-3 text-md font-semibold text-white">
+                  {option.title}
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </main>
 
       {/* Footer Component */}
-      <Footer />
+      <div className="w-full">
+        <Footer />
+      </div>
     </div>
   );
 }
